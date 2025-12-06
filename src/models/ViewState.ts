@@ -385,7 +385,7 @@ export const useViewState = create<ViewState>()((set, get) => ({
 		const workspace = plugin.app.workspace;
 		const activeLeaf = get().latestActiveLeaf;
 		if (isHoverEditorEnabled(plugin.app)) {
-			if (activeLeaf && !activeLeaf.parent.parentSplit) return;
+			if (activeLeaf && !activeLeaf.parent?.parentSplit) return;
 		}
 		const isRootLeaf =
 			activeLeaf?.getRoot() === workspace.rootSplit &&
