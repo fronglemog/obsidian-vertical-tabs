@@ -55,8 +55,16 @@ export default class ObsidianVerticalTabs extends Plugin {
 		await this.patchViews();
 		this.addSettingTab(new ObsidianVerticalTabsSettingTab(this.app, this));
 		this.app.workspace.onLayoutReady(() => {
+			const isPhone = Platform.isPhone;
+			const isUnknownMobile = Platform.isMobile && !Platform.isTablet;
+			const tabletOrDesktop = Platform.isTablet || Platform.isDesktop;
+			const sidebarCollapse = this.app.workspace.leftSplit.collapsed;
+			const shouldCollapse =
+				isPhone ||
+				isUnknownMobile ||
+				(tabletOrDesktop && sidebarCollapse);
 			this.openVerticalTabs();
-			if (Platform.isMobile && !Platform.isTablet) {
+			if (shouldCollapse) {
 				setTimeout(() => this.app.workspace.leftSplit.collapse());
 			}
 			setTimeout(() => {
