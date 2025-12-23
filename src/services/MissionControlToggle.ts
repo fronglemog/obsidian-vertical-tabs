@@ -6,6 +6,7 @@ import {
 } from "src/models/VTGroupView";
 
 export function addMissionControlToggle(group: WorkspaceParent | null) {
+  return; // Disable mission control toggle in tab bar
 	if (!group) return;
 
 	const spacer = group.tabHeaderContainerEl.querySelector(
